@@ -1,12 +1,14 @@
 <!-- Navigation -->
+
 <nav class="navbar navbar-default navbar-static-top m-b-0">
     <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)"
             data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-        <div class="top-left-part"><a class="logo" href="{{route('home.index')}}"><b>
+        <div class="top-left-part"><a class="logo" href="{{route('home.index')}}">
+                <b>
                     <!--This is dark logo icon--><img src="{{asset('images/logo-icon.png')}}" alt="home"
-                        class="dark-logo" />
+                        class="dark-logo dark" />
                     <!--This is light logo icon--><img src="{{asset('images/logo-icon.png')}}" alt="home"
-                        class="light-logo" />
+                        class="light-logo light" />
                 </b><span class="hidden-xs">
                     <!--This is dark logo text--><img src="{{asset('images/logo-text.png')}}" alt="home"
                         class="dark-logo" />

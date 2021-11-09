@@ -13,7 +13,7 @@ class CreateProvidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('providers', function (Blueprint $table) {
+        Schema::create('firms', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
             $table->string('hiringPerson')->nullable();
@@ -23,8 +23,10 @@ class CreateProvidersTable extends Migration
             $table->string('paymentPersonEmail')->nullable();
             $table->string('paymentPersonPhone')->nullable();
             $table->string('businessType')->nullable();
+            $table->string('employees')->nullable();
+            $table->string('experienceInYear')->nullable();
             $table->string('zip')->nullable();
-            $table->string('experince')->nullable();
+            $table->string('specialize')->nullable();
             $table->text('about')->nullable();
             $table->timestamps();
         });

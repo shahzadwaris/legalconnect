@@ -53,8 +53,8 @@ Route::get('/nurse/terms-and-conditions', 'HomeController@termsNurse')->name('ho
 Auth::routes();
 Route::get('/change-password', 'Auth\ChangePasswordController@index')->name('changePassword.index');
 Route::post('/update-password', 'Auth\ChangePasswordController@update')->name('changePassword.update');
-Route::get('nurseregister', 'Auth\RegisterController@nurseRegister')->name('register.nurse');
-Route::get('providerregister', 'Auth\RegisterController@medicalProviderRegister')->name('register.provider');
+Route::get('worker-register', 'Auth\RegisterController@nurseRegister')->name('register.nurse');
+Route::get('firm-register', 'Auth\RegisterController@medicalProviderRegister')->name('register.provider');
 
 Route::get('/nurse/provider/{username}', 'Nurse\NurseController@providerProfile')->name('nurse.providerProfile');
 Route::get('/provider/nurse/{username}', 'Provider\ProviderController@nurseProfile')->name('provider.nurseProfile');

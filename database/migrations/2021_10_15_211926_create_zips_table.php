@@ -14,7 +14,7 @@ class CreateZipsTable extends Migration
     public function up()
     {
         Schema::create('zips', function (Blueprint $table) {
-            $table->id();
+            $table->string('code')->index();
             $table->string('stateab');
             $table->string('latitude');
             $table->string('longitude');

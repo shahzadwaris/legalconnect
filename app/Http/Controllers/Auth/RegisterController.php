@@ -7,6 +7,8 @@ use App\Models\Nurse;
 use App\Models\Provider;
 use App\Models\NotificationSetting;
 use App\Http\Controllers\Controller;
+use App\Models\Firm;
+use App\Models\Worker;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
@@ -49,7 +51,7 @@ class RegisterController extends Controller
 
     public function nurseRegister()
     {
-        return view('auth.nurseregister');
+        return view('auth.worker');
     }
 
     public function medicalProviderRegister()
@@ -110,12 +112,12 @@ class RegisterController extends Controller
 
     public function createNurse($id)
     {
-        Nurse::create(['user_id' => $id]);
+        Worker::create(['user_id' => $id]);
     }
 
     public function createProvider($id)
     {
-        Provider::create(['user_id' => $id]);
+        Firm::create(['user_id' => $id]);
     }
 
     protected function redirectTo()

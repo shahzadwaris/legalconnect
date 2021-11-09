@@ -7,10 +7,12 @@ use App\Models\Page;
 use App\Models\User;
 use App\Models\Nurse;
 use App\Models\Category;
+use App\Models\Firm;
 use App\Models\Provider;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use App\Models\NotificationSetting;
+use App\Models\Worker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -30,22 +32,22 @@ class DatabaseSeeder extends Seeder
             'type'         => '3',
         ]);
         User::create([
-            'name'          => 'Test Nurse',
-            'username'      => 'nurse',
+            'name'          => 'Test Worker',
+            'username'      => 'worker',
             'password'      => bcrypt('123456'),
             'email'         => 'shahzadwaris81@gmail.com',
             'status'        => 'active',
             'type'          => '1',
             'stripeAccount' => 'acct_1JkeDy2cuEnjZMsD',
         ]);
-        Nurse::create([
+        Worker::create([
             'user_id'         => '2',
         ]);
-        Provider::create([
+        Firm::create([
             'user_id'         => '3',
         ]);
         User::create([
-            'name'          => 'Test Provider',
+            'name'          => 'Test Firm',
             'username'      => 'provider',
             'password'      => bcrypt('123456'),
             'email'         => 'provider@admin.com',
@@ -68,7 +70,8 @@ class DatabaseSeeder extends Seeder
             'email'     => 1,
             'marketing' => 1,
         ]);
-        $categories = ' Physician, Registered Nurse, Nurse Practitioner, Physician Assistant,Phlebotomist,Therapists,Technicians';
+        $categories = 'Personal Injury, Criminal, Estate, Family, Contracts, Litigation, Tax, Admiralty, Maritime, Banking or Finance, Civil Rights, Constitutional, Corporate, Employment or Labor, Real Estate, Immigration, Patent, Intellectual Property, Bankruptcy or Debt Collection, Health
+        ';
         $categories = explode(',', $categories);
         foreach ($categories as $category) {
             Category::create([

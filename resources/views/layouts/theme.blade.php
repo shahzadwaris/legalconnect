@@ -303,10 +303,10 @@
                                 <h4>Please choose:</h4>
                             </div>
                             <div class="col-6">
-                                <a href="{{route('register.nurse')}}" class="btn btn-secondary">Medical Worker</a>
+                                <a href="{{route('register.nurse')}}" class="btn btn-secondary">Worker</a>
                             </div>
                             <div class="col-6">
-                                <a href="{{route('register.provider')}}" class="btn btn-primary">Medical Provider</a>
+                                <a href="{{route('register.provider')}}" class="btn btn-primary">Firm</a>
                             </div>
                         </div>
                     </div>

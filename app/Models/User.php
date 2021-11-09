@@ -37,14 +37,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function nurse()
+    public function worker()
     {
-        return $this->hasOne(Nurse::class);
+        return $this->hasOne(Worker::class);
     }
 
-    public function provider()
+    public function firm()
     {
-        return $this->hasOne(Provider::class);
+        return $this->hasOne(Firm::class);
     }
 
     public function jobs()

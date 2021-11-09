@@ -13,27 +13,21 @@ class CreateNursesTable extends Migration
      */
     public function up()
     {
-        Schema::create('nurses', function (Blueprint $table) {
+        Schema::create('workers', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('category_id');
             $table->string('dob')->nullable();
-            $table->text('address')->nullable();
-            $table->string('accountHolderFirstName')->nullable();
-            $table->string('accountHolderLastName')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('socialSecurityNumber')->nullable();
-            $table->string('bankName')->nullable();
-            $table->string('rountingNumber')->nullable();
-            $table->string('accountNumber')->nullable();
-            $table->string('zip')->nullable();
-            $table->string('insurance')->nullable();
-            $table->string('salary')->nullable();
-            $table->tinyInteger('travel')->nullable();
-            $table->tinyInteger('experienceInYears')->nullable();
-            $table->text('experiences')->nullable();
-            $table->text('about')->nullable();
+            $table->string('address')->nullable();
+            $table->string('location')->nullable();
+            $table->tinyInteger('llm')->nullable();
+            $table->integer('requestSalary')->nullable();
+            $table->text('specialties')->nullable();
+            $table->string('experienceInYears')->nullable();
+            $table->text('bars')->nullable();
+            $table->string('license')->nullable();
+            $table->text('otherSkills')->nullable();
+            $table->text('experience')->nullable();
             $table->timestamps();
         });
     }

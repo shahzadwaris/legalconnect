@@ -22,7 +22,7 @@ class NurseController extends Controller
 
     public function profile()
     {
-        $user       = User::with('nurse')->where('id', auth()->user()->id)->first();
+        $user       = User::with('worker')->where('id', auth()->user()->id)->first();
         $categories = Category::all();
         return view('nurses.profile', compact('user', 'categories'));
     }

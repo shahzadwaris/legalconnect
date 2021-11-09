@@ -67,7 +67,7 @@
                   <div class="form-group">
                     <label for="date" class="col-md-12">Date of Birth</label>
                     <div class="input-group date" data-provide="datepicker">
-                      <input type="text" name="dob" value="{{$user->nurse->dob ?? ''}}"
+                      <input type="text" name="dob" value="{{$user->worker->dob ?? ''}}"
                         class="form-control form-control-line pl-2">
                       <div class="input-group-addon">
                         <span class="glyphicon glyphicon-th"></span>
@@ -82,7 +82,7 @@
                   <div class="form-group col-12">
                     <label class="col-md-12">Home Address</label>
                     <div class="col-md-12">
-                      <input type="text" value="{{$user->nurse->address ?? ""}}" class="form-control form-control-line"
+                      <input type="text" value="{{$user->worker->address ?? ""}}" class="form-control form-control-line"
                         name="address" value="" required>
                     </div>
                     @error('address')
@@ -97,7 +97,7 @@
                       <select name="category" id="category" class="form-control">
                         @foreach ($categories as $category)
                         <option value="{{$category->id}}" {{$category->id ==
-                          $user->nurse->category_id ? 'selected' : ''}}>{{$category->title}}
+                          $user->worker->category_id ? 'selected' : ''}}>{{$category->title}}
                         </option>
                         @endforeach
                       </select>
@@ -113,16 +113,16 @@
                       insurance?</label>
                     <div class="col-md-12">
                       <div class="radio radio-info">
-                        <input type="radio" name="insurance" id="yes" value="Yes" @if($user->nurse)
-                        @if ($user->nurse->insurance == 'Yes')
+                        <input type="radio" name="insurance" id="yes" value="Yes" @if($user->worker)
+                        @if ($user->worker->insurance == 'Yes')
                         checked
                         @endif
                         @endif />
                         <label for="yes"> Yes </label>
                       </div>
                       <div class="radio radio-info">
-                        <input type="radio" name="insurance" id="no" value="No" @if($user->nurse)
-                        @if ($user->nurse->insurance == 'No')
+                        <input type="radio" name="insurance" id="no" value="No" @if($user->worker)
+                        @if ($user->worker->insurance == 'No')
                         checked
                         @endif
                         @endif />
@@ -169,7 +169,7 @@
                     <label for="ahfn" class="col-md-12">Account Holder First Name</label>
                     <div class="col-md-12">
                       <input type="text" class="form-control form-control-line" name="firstName" id="ahfn"
-                        value="{{$user->nurse->accountHolderFirstName ?? ''}}">
+                        value="{{$user->worker->accountHolderFirstName ?? ''}}">
                     </div>
                     @error('firstName')
                     <span class="text-danger">{{$message}}</span>
@@ -179,7 +179,7 @@
                     <label for="ahln" class="col-md-12">Account Holder Last Name</label>
                     <div class="col-md-12">
                       <input type="text" class="form-control form-control-line" name="lastName" id="ahln"
-                        value="{{$user->nurse->accountHolderLastName ?? ''}}">
+                        value="{{$user->worker->accountHolderLastName ?? ''}}">
                     </div>
                     @error('lastName')
                     <span class="text-danger">{{$message}}</span>
@@ -189,7 +189,7 @@
                     <label for="phone" class="col-md-12">Phone</label>
                     <div class="col-md-12">
                       <input type="text" class="form-control form-control-line" name="phone" id="phone"
-                        value="{{$user->nurse->phone ?? ''}}">
+                        value="{{$user->worker->phone ?? ''}}">
                     </div>
                     @error('phone')
                     <span class="text-danger">{{$message}}</span>
@@ -199,14 +199,14 @@
                     <label for="phone" class="col-md-12">Gender</label>
                     <div class="col-md-12">
                       <select name="gender" id="gender" class="form-control">
-                        <option value="female" @if ($user->nurse)
-                          @if($user->nurse->gender == 'female')
+                        <option value="female" @if ($user->worker)
+                          @if($user->worker->gender == 'female')
                           checked
                           @endif
                           @endif>Female
                         </option>
-                        <option value="male" @if ($user->nurse)
-                          @if($user->nurse->gender == 'male')
+                        <option value="male" @if ($user->worker)
+                          @if($user->worker->gender == 'male')
                           checked
                           @endif
                           @endif>Male
@@ -218,7 +218,7 @@
                     <label for="ssn" class="col-md-12">Social Security Number</label>
                     <div class="col-md-12">
                       <input type="text" class="form-control form-control-line" name="ssn" id="ssn"
-                        value="{{$user->nurse->socialSecurityNumber ?? ''}}">
+                        value="{{$user->worker->socialSecurityNumber ?? ''}}">
                     </div>
                     @error('ssn')
                     <span class="text-danger">{{$message}}</span>
@@ -228,7 +228,7 @@
                     <label for="bankName" class="col-md-12">Bank Name </label>
                     <div class="col-md-12">
                       <input type="text" class="form-control form-control-line" name="bname" id="bankName"
-                        value="{{$user->nurse->bankName ?? ''}}">
+                        value="{{$user->worker->bankName ?? ''}}">
                     </div>
                     @error('bankName')
                     <span class="text-danger">{{$message}}</span>
@@ -238,7 +238,7 @@
                     <label for="routingNumber" class="col-md-12">Routing Number </label>
                     <div class="col-md-12">
                       <input type="text" class="form-control form-control-line" name="rnumber" id="routingNumber"
-                        value="{{$user->nurse->rountingNumber ?? ''}}">
+                        value="{{$user->worker->rountingNumber ?? ''}}">
                     </div>
                     @error('rnumber')
                     <span class="text-danger">{{$message}}</span>
@@ -248,7 +248,7 @@
                     <label for="accountNumber" class="col-md-12">Account Number </label>
                     <div class="col-md-12">
                       <input type="text" class="form-control form-control-line" name="anumber" id="accountNumber"
-                        value="{{$user->nurse->accountNumber ?? ''}}">
+                        value="{{$user->worker->accountNumber ?? ''}}">
                     </div>
                     @error('anumber')
                     <span class="text-danger">{{$message}}</span>
@@ -317,7 +317,7 @@
                     <label for="zip" class="col-md-12">Location Zip Code</label>
                     <div class="col-md-12">
                       <input type="text" class="form-control form-control-line" name="zip" id="zip"
-                        value="{{$user->nurse->zip ?? ""}}" required>
+                        value="{{$user->worker->zip ?? ""}}" required>
                     </div>
                   </div>
                   <div class="form-group">
@@ -325,7 +325,7 @@
                     <div class="col-md-12">
                       <div class="input-group m-t-10"> <span class="input-group-addon"><i
                             class="fa fa-dollar"></i></span>
-                        <input type="text" required id="salary" name="salary" value="{{$user->nurse->salary ?? ""}}"
+                        <input type="text" required id="salary" name="salary" value="{{$user->worker->salary ?? ""}}"
                           class="form-control">
                       </div>
 
@@ -336,8 +336,8 @@
                     <div class="col-md-12">
 
                       <div class="radio radio-info">
-                        <input type="radio" required name="travel" id="travel" value="1" @if ($user->nurse)
-                        @if ($user->nurse->travel == 1)
+                        <input type="radio" required name="travel" id="travel" value="1" @if ($user->worker)
+                        @if ($user->worker->travel == 1)
                         checked
                         @endif
                         @endif>
@@ -345,8 +345,8 @@
                       </div>
 
                       <div class="radio radio-info">
-                        <input type="radio" required name="travel" id="travel-mo" value="0" @if ($user->nurse)
-                        @if ($user->nurse->travel == 0)
+                        <input type="radio" required name="travel" id="travel-mo" value="0" @if ($user->worker)
+                        @if ($user->worker->travel == 0)
                         checked
                         @endif
                         @endif>
@@ -360,8 +360,8 @@
                     <div class="col-md-12">
 
                       <div class="radio radio-info">
-                        <input type="radio" required name="years" id="lessthenyear" value="1" @if ($user->nurse)
-                        @if ($user->nurse->experienceInYears == 1)
+                        <input type="radio" required name="years" id="lessthenyear" value="1" @if ($user->worker)
+                        @if ($user->worker->experienceInYears == 1)
                         checked
                         @endif
                         @endif>
@@ -369,8 +369,8 @@
                       </div>
 
                       <div class="radio radio-info">
-                        <input type="radio" required name="years" id="24years" value="2" @if ($user->nurse)
-                        @if ($user->nurse->experienceInYears == 2)
+                        <input type="radio" required name="years" id="24years" value="2" @if ($user->worker)
+                        @if ($user->worker->experienceInYears == 2)
                         checked
                         @endif
                         @endif
@@ -379,8 +379,8 @@
                       </div>
 
                       <div class="radio radio-info">
-                        <input type="radio" required name="years" id="59years" value="3" @if ($user->nurse)
-                        @if ($user->nurse->experienceInYears == 3)
+                        <input type="radio" required name="years" id="59years" value="3" @if ($user->worker)
+                        @if ($user->worker->experienceInYears == 3)
                         checked
                         @endif
                         @endif
@@ -389,8 +389,8 @@
                       </div>
 
                       <div class="radio radio-info">
-                        <input type="radio" required name="years" id="10years" value="4" @if ($user->nurse)
-                        @if ($user->nurse->experienceInYears == 4)
+                        <input type="radio" required name="years" id="10years" value="4" @if ($user->worker)
+                        @if ($user->worker->experienceInYears == 4)
                         checked
                         @endif
                         @endif
@@ -404,9 +404,9 @@
                     </label>
                     @php
                     $experiences = [];
-                    if($user->nurse)
+                    if($user->worker)
                     {
-                    $experiences = explode(',', $user->nurse->experiences);
+                    $experiences = explode(',', $user->worker->experiences);
                     }
 
                     @endphp
@@ -545,7 +545,7 @@
                       Provider to know about (Optional).</label>
                     <div class="col-md-12">
                       <textarea class="form-control form-control-line" rows="5"
-                        name="about">{{$user->nurse->about ?? ''}}</textarea>
+                        name="about">{{$user->worker->about ?? ''}}</textarea>
                     </div>
                   </div>
 
