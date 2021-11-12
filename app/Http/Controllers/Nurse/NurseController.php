@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Nurse\UpdateMedicalProviderRequest;
 use App\Http\Requests\Nurse\UpdatePersonalDetailsRequest;
+use App\Models\Worker;
 
 class NurseController extends Controller
 {
@@ -30,20 +31,20 @@ class NurseController extends Controller
     public function updatePersonalDetails(UpdatePersonalDetailsRequest $request)
     {
         auth()->user()->update(['name' => $request->name]);
-        $nurse = Nurse::where('user_id', Auth::id())->first();
+        $nurse = Worker::where('user_id', Auth::id())->first();
         if ($nurse) {
             $nurse->update([
                 'user_id'      => Auth::id(),
                 'dob'          => $request->dob,
                 'address'      => $request->address,
-                'insurance'    => $request->insurance,
+                'llm'          => $request->llm,
                 'category_id'  => $request->category,
             ]);
             session()->flash('alert-success', 'Your profile has been updated successfully!');
             return redirect()->route('nurse.profile');
             exit;
         }
-        auth()->user()->nurse()->create([
+        auth()->user()->worker()->create([
             'user_id'        => Auth::id(),
             'dob'            => $request->dob,
             'address'        => $request->address,
@@ -55,29 +56,29 @@ class NurseController extends Controller
 
     public function updateMedicalProviderDetails(UpdateMedicalProviderRequest $request)
     {
-        $nurse = Nurse::where('user_id', Auth::id())->first();
+        $nurse = Worker::where('user_id', Auth::id())->first();
         if ($nurse) {
             $nurse->update([
                 'user_id'             => Auth::id(),
                 'zip'                 => $request->zip,
+                'bars'                => $request->bars,
                 'salary'              => $request->salary,
-                'travel'              => $request->travel,
                 'experienceInYears'   => $request->years,
                 'experiences'         => is_array($request->experiences) ? implode(',', $request->experiences) : '',
-                'about'               => $request->about,
+                'about'         => $request->about,
             ]);
             session()->flash('alert-success', 'Your profile has been updated successfully!');
             return redirect()->route('nurse.profile');
             exit;
         }
-        auth()->user()->nurse()->create([
+        auth()->user()->worker()->create([
             'user_id'             => Auth::id(),
             'zip'                 => $request->zip,
+            'bars'                => $request->bars,
             'salary'              => $request->salary,
-            'travel'              => $request->travel,
             'experienceInYears'   => $request->years,
             'experiences'         => is_array($request->experiences) ? implode(',', $request->experiences) : '',
-            'about'               => $request->about,
+            'about'         => $request->about,
         ]);
         session()->flash('alert-success', 'Your profile has been updated successfully!');
         return redirect()->route('nurse.profile');
@@ -99,7 +100,7 @@ class NurseController extends Controller
     public function destroy()
     {
         $user = auth()->user();
-        $user->nurse()->delete();
+        $user->worker()->delete();
         $user->delete();
         Auth::logout();
         return redirect()->route('login');
@@ -109,7 +110,7 @@ class NurseController extends Controller
     {
         // dd($request->ip());
         // dd($request->all());
-        $nurse  = Nurse::where('user_id', Auth::id())->first();
+        $nurse  = Worker::where('user_id', Auth::id())->first();
         $user   = Auth::user();
         $stripe = new StripeClient(
             config('services.stripe.secret')

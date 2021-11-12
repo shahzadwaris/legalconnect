@@ -27,7 +27,7 @@ Medical Provider Registration
       {{-- <div class="section-top-border"> --}}
         <div class="row">
           <div class="col-lg-8 offset-md-2">
-            <h3 class="mb-30 text-center">Medical Provider Registration</h3>
+            <h3 class="mb-30 text-center">Law Firm Registration</h3>
             <form action="{{route('register')}}" method="POST" id="register">
               @csrf
               <div class="mt-10">

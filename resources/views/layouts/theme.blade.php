@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@yield('title') - MedConnect</title>
+    <title>@yield('title') - LegalConnect</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -303,10 +303,10 @@
                                 <h4>Please choose:</h4>
                             </div>
                             <div class="col-6">
-                                <a href="{{route('register.nurse')}}" class="btn btn-secondary">Worker</a>
+                                <a href="{{route('register.nurse')}}" class="btn btn-secondary">Legal Worker</a>
                             </div>
                             <div class="col-6">
-                                <a href="{{route('register.provider')}}" class="btn btn-primary">Firm</a>
+                                <a href="{{route('register.provider')}}" class="btn btn-primary">Law Firm</a>
                             </div>
                         </div>
                     </div>

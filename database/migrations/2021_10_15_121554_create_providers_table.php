@@ -24,7 +24,7 @@ class CreateProvidersTable extends Migration
             $table->string('paymentPersonPhone')->nullable();
             $table->string('businessType')->nullable();
             $table->string('employees')->nullable();
-            $table->string('experienceInYear')->nullable();
+            $table->string('experience')->nullable();
             $table->string('zip')->nullable();
             $table->string('specialize')->nullable();
             $table->text('about')->nullable();

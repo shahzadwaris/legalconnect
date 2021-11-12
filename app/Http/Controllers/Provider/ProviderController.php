@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProviderBusinessDetailsRequest;
+use App\Models\Category;
+use App\Models\Firm;
 
 class ProviderController extends Controller
 {
@@ -25,8 +27,9 @@ class ProviderController extends Controller
 
     public function profile()
     {
-        $user = User::with('provider')->where('id', auth()->user()->id)->first();
-        return view('providers.profile', compact('user'));
+        $categories = Category::all();
+        $user = User::with('firm')->where('id', auth()->user()->id)->first();
+        return view('providers.profile', compact('user', 'categories'));
     }
 
     public function updateBusinessDetails(ProviderBusinessDetailsRequest $request)
@@ -34,7 +37,7 @@ class ProviderController extends Controller
         // dd($request->all());
         
         auth()->user()->update(['name' => $request->businessName]);
-        $provider = Provider::where('user_id', Auth::id())->first();
+        $provider = Firm::where('user_id', Auth::id())->first();
         if ($provider) {
             $provider->update([
                 'user_id'               => Auth::id(),
@@ -49,7 +52,7 @@ class ProviderController extends Controller
             return redirect()->route('provider.profile');
             exit;
         }
-        auth()->user()->provider()->create([
+        auth()->user()->firm()->create([
             'user_id'               => Auth::id(),
             'hiringPerson'          => $request->hiringPerson,
             'hiringPersonEmail'     => $request->hiringPersonEmail,
@@ -64,24 +67,28 @@ class ProviderController extends Controller
 
     public function updateBusiness(Request $request)
     {
-        $provider = Provider::where('user_id', Auth::id())->first();
+        $provider = Firm::where('user_id', Auth::id())->first();
         if ($provider) {
             $provider->update([
                 'user_id'               => Auth::id(),
                 'businessType'          => $request->type,
                 'zip'                   => $request->zip,
-                'experince'             => $request->experince,
+                'employees'             => $request->employees,
+                'experience'            => $request->experince,
+                'specialize'            => is_array($request->experiences) ? implode(',', $request->experiences) : '',
                 'about'                 => $request->about,
             ]);
             session()->flash('alert-success', 'Your profile has been updated successfully!');
             return redirect()->route('provider.profile');
             exit;
         }
-        auth()->user()->provider()->create([
+        auth()->user()->firm()->create([
             'user_id'               => Auth::id(),
             'businessType'          => $request->type,
             'zip'                   => $request->zip,
-            'experince'             => $request->experince,
+            'employees'             => $request->employees,
+            'experience'            => $request->experince,
+            'specialize'            => is_array($request->experiences) ? implode(',', $request->experiences) : '',
             'about'                 => $request->about,
         ]);
         session()->flash('alert-success', 'Your profile has been updated successfully!');
@@ -97,14 +104,14 @@ class ProviderController extends Controller
     public function nurseProfile($username)
     {
         $user     = auth()->user();
-        $nurse    = User::with('nurse')->where('username', $username)->first();
+        $nurse    = User::with('worker')->where('username', $username)->first();
         return view('providers.nurse-profile', compact('user', 'nurse'));
     }
 
     public function destroy()
     {
         $user = auth()->user();
-        $user->provider()->delete();
+        $user->firm()->delete();
         $user->delete();
         Auth::logout();
         return redirect()->route('login');

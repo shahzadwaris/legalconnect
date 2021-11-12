@@ -42,7 +42,7 @@ class WelcomeMPNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage())
-                    ->subject('Welcome to MedConnect')
+                    ->subject('Welcome to LegalConnect')
                     ->greeting('Hello ' . $this->user->username . ',')
                     ->line('Thank you for registering. We are excited to welcome you to the next generation of Medical Staffing.')
                     ->line("We offer opportunities for full time, Per Diem, and Travel Jobs for Nurses. We have just launched our grand opening in October 2021, while some jobs may be limited in certain areas, more and more jobs will become available every day. Please keep checking our website and don't forget to turn on notifications to receive emails when jobs are posted in the zip code of your choice!")
@@ -58,7 +58,7 @@ class WelcomeMPNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'data' => 'Welcome to MedConnect',
+            'data' => 'Welcome to LegalConnect',
         ];
     }
 }

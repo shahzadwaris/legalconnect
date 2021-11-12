@@ -48,9 +48,9 @@ class DatabaseSeeder extends Seeder
         ]);
         User::create([
             'name'          => 'Test Firm',
-            'username'      => 'provider',
+            'username'      => 'firm',
             'password'      => bcrypt('123456'),
-            'email'         => 'provider@admin.com',
+            'email'         => 'firm@admin.com',
             'status'        => 'active',
             'type'          => '2',
             'stripeAccount' => 'cus_KPknv7L7EAfsWR',
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
             'email'     => 1,
             'marketing' => 1,
         ]);
-        $categories = 'Personal Injury, Criminal, Estate, Family, Contracts, Litigation, Tax, Admiralty, Maritime, Banking or Finance, Civil Rights, Constitutional, Corporate, Employment or Labor, Real Estate, Immigration, Patent, Intellectual Property, Bankruptcy or Debt Collection, Health
+        $categories = 'Personal Injury,Criminal,Estate,Family,Contracts,Litigation,Tax,Admiralty,Maritime,Banking or Finance,Civil Rights,Constitutional,Corporate,Employment or Labor,Real Estate,Immigration,Patent,Intellectual Property,Bankruptcy or Debt Collection,Health
         ';
         $categories = explode(',', $categories);
         foreach ($categories as $category) {

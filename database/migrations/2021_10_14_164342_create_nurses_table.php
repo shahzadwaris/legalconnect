@@ -19,15 +19,15 @@ class CreateNursesTable extends Migration
             $table->bigInteger('category_id');
             $table->string('dob')->nullable();
             $table->string('address')->nullable();
-            $table->string('location')->nullable();
+            $table->string('zip')->nullable();
             $table->tinyInteger('llm')->nullable();
-            $table->integer('requestSalary')->nullable();
+            $table->integer('salary')->nullable();
             $table->text('specialties')->nullable();
             $table->string('experienceInYears')->nullable();
             $table->text('bars')->nullable();
             $table->string('license')->nullable();
-            $table->text('otherSkills')->nullable();
-            $table->text('experience')->nullable();
+            $table->text('about')->nullable();
+            $table->text('experiences')->nullable();
             $table->timestamps();
         });
     }

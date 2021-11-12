@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="white-box">
-                        <h3 class="box-title"> <a href="hired.php">Hired Nurses</a></h3>
+                        <h3 class="box-title"> <a href="hired.php">Hired Workers</a></h3>
                         <div class="text-right">
                             <h1><sup><i class=" text-danger"></i></sup>
 

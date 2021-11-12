@@ -10,11 +10,6 @@
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
           <h4 class="page-title">My Profile</h4>
         </div>
-        {{-- <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-          <a href="{{route('earning.index')}}"
-            class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">My
-            Earnings</a>
-        </div> --}}
       </div>
       <!-- /.row -->
       <!-- .row -->
@@ -34,7 +29,7 @@
             <ul class="nav nav-tabs tabs customtab">
               <li class="active tab"><a href="#settings" data-toggle="tab"> <span class="visible-xs"><i
                       class="fa fa-user"></i></span> <span>
-                    These information will be kept private and not be shared with anyone. Medical Providers will
+                    These information will be kept private and not be shared with anyone. Firms will
                     identify you by user name.
                   </span> </a> </li>
             </ul>
@@ -109,20 +104,20 @@
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label for="example-email" class="col-md-12">Do you currently have liability
-                      insurance?</label>
+                    <label for="example-email" class="col-md-12">Do you have an LLM?
+                      (optional)</label>
                     <div class="col-md-12">
                       <div class="radio radio-info">
-                        <input type="radio" name="insurance" id="yes" value="Yes" @if($user->worker)
-                        @if ($user->worker->insurance == 'Yes')
+                        <input type="radio" name="llm" id="yes" value="Yes" @if($user->worker)
+                        @if ($user->worker->llm == 1)
                         checked
                         @endif
                         @endif />
                         <label for="yes"> Yes </label>
                       </div>
                       <div class="radio radio-info">
-                        <input type="radio" name="insurance" id="no" value="No" @if($user->worker)
-                        @if ($user->worker->insurance == 'No')
+                        <input type="radio" name="llm" id="no" value="No" @if($user->worker)
+                        @if ($user->worker->llm == 0)
                         checked
                         @endif
                         @endif />
@@ -145,7 +140,6 @@
         </div>
       </div>
       <!-- /.row -->
-
       <!-- .row -->
       <div class="row">
 
@@ -154,157 +148,13 @@
             <ul class="nav nav-tabs tabs customtab">
               <li class="active tab"><a href="#settings" data-toggle="tab"> <span class="visible-xs"><i
                       class="fa fa-user"></i></span> <span>
-                    The following information will be required when you accept your first job in order to get paid (Only
-                    required if you accept Per Diem or Travel Employment)
-                  </span> </a> </li>
-            </ul>
-            <div class="tab-content">
-
-
-              <div class="tab-pane active" id="settings">
-                <form class="form-horizontal form-material" action="{{route('nurse.addBank')}}" method="POST"
-                  enctype="multipart/form-data" id="bankForm">
-                  @csrf
-                  <div class="form-group">
-                    <label for="ahfn" class="col-md-12">Account Holder First Name</label>
-                    <div class="col-md-12">
-                      <input type="text" class="form-control form-control-line" name="firstName" id="ahfn"
-                        value="{{$user->worker->accountHolderFirstName ?? ''}}">
-                    </div>
-                    @error('firstName')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="ahln" class="col-md-12">Account Holder Last Name</label>
-                    <div class="col-md-12">
-                      <input type="text" class="form-control form-control-line" name="lastName" id="ahln"
-                        value="{{$user->worker->accountHolderLastName ?? ''}}">
-                    </div>
-                    @error('lastName')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="phone" class="col-md-12">Phone</label>
-                    <div class="col-md-12">
-                      <input type="text" class="form-control form-control-line" name="phone" id="phone"
-                        value="{{$user->worker->phone ?? ''}}">
-                    </div>
-                    @error('phone')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="phone" class="col-md-12">Gender</label>
-                    <div class="col-md-12">
-                      <select name="gender" id="gender" class="form-control">
-                        <option value="female" @if ($user->worker)
-                          @if($user->worker->gender == 'female')
-                          checked
-                          @endif
-                          @endif>Female
-                        </option>
-                        <option value="male" @if ($user->worker)
-                          @if($user->worker->gender == 'male')
-                          checked
-                          @endif
-                          @endif>Male
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="ssn" class="col-md-12">Social Security Number</label>
-                    <div class="col-md-12">
-                      <input type="text" class="form-control form-control-line" name="ssn" id="ssn"
-                        value="{{$user->worker->socialSecurityNumber ?? ''}}">
-                    </div>
-                    @error('ssn')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="bankName" class="col-md-12">Bank Name </label>
-                    <div class="col-md-12">
-                      <input type="text" class="form-control form-control-line" name="bname" id="bankName"
-                        value="{{$user->worker->bankName ?? ''}}">
-                    </div>
-                    @error('bankName')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="routingNumber" class="col-md-12">Routing Number </label>
-                    <div class="col-md-12">
-                      <input type="text" class="form-control form-control-line" name="rnumber" id="routingNumber"
-                        value="{{$user->worker->rountingNumber ?? ''}}">
-                    </div>
-                    @error('rnumber')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="accountNumber" class="col-md-12">Account Number </label>
-                    <div class="col-md-12">
-                      <input type="text" class="form-control form-control-line" name="anumber" id="accountNumber"
-                        value="{{$user->worker->accountNumber ?? ''}}">
-                    </div>
-                    @error('anumber')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                  </div>
-                  <div class="form-group">
-                    <label for="example-email" class="col-md-12">Upload RN Card or any Professional License
-                      Certification</label>
-                    <div class="col-md-12">
-                      <input type="file" class="form-control form-control-line" name="certification" id="example-email">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="example-email" class="col-md-12">Upload Proof of BLS Certification </label>
-                    <div class="col-md-12">
-                      <input type="file" class="form-control form-control-line" name="bls" id="example-email">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="example-email" class="col-md-12">Upload Valid Driver's license or Passport</label>
-                    <div class="col-md-12">
-                      <input type="file" class="form-control form-control-line" name="passport" id="example-email">
-                    </div>
-                  </div>
-                  <div class="error"></div>
-                  <div class="form-group">
-                    <div class="col-sm-12">
-                      <button class="btn btn-success" id='addBankInfo'>Update</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
-
-      <!-- .row -->
-      <div class="row">
-
-        <div class="col-md-12 col-xs-12">
-          <div class="white-box">
-            <ul class="nav nav-tabs tabs customtab">
-              <li class="active tab"><a href="#settings" data-toggle="tab"> <span class="visible-xs"><i
-                      class="fa fa-user"></i></span> <span>
-                    The following information will be seen by Medical Providers
+                    The following information will be seen by Firm
                   </span> </a> </li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="settings">
                 <form class="form-horizontal form-material" action="{{route('nurse.updateMedicalProviderDetails')}}"
-                  method="POST">
+                  method="POST" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group">
                     <label class="col-md-12">Username</label>
@@ -321,7 +171,14 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="salary" class="col-md-12">Preferred Pay/Salary</label>
+                    <label for="bars" class="col-md-12">If you are an Attorney which State Bars have you passed?</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control form-control-line" name="bars" id="bars"
+                        value="{{$user->worker->bars ?? ""}}" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="salary" class="col-md-12">Preferred Pay/Salary (Optional)</label>
                     <div class="col-md-12">
                       <div class="input-group m-t-10"> <span class="input-group-addon"><i
                             class="fa fa-dollar"></i></span>
@@ -331,7 +188,7 @@
 
                     </div>
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label for="example-email" class="col-md-12">Willing to travel? </label>
                     <div class="col-md-12">
 
@@ -354,9 +211,9 @@
                       </div>
 
                     </div>
-                  </div>
+                  </div> --}}
                   <div class="form-group">
-                    <label for="example-email" class="col-md-12">Years of Experience </label>
+                    <label for="example-email" class="col-md-12">How many years of experience do you have?</label>
                     <div class="col-md-12">
 
                       <div class="radio radio-info">
@@ -411,133 +268,16 @@
 
                     @endphp
                     <div class="col-md-12">
+                      @foreach ($categories as $item)
                       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="checkbox checkbox-info">
-                          <input id="checkbox0" type="checkbox" {{in_array('ER', $experiences) ? 'checked' : '' }}
-                            name="experiences[]" value="ER">
-                          <label for="checkbox0"> ER </label>
+                          <input id="{{$item->title}}" type="checkbox" {{in_array($item->title, $experiences) ?
+                          'checked'
+                          : '' }} name="experiences[]" value="{{$item->title}}">
+                          <label for="{{$item->title}}"> {{$item->title}} </label>
                         </div>
                       </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox1" type="checkbox" {{in_array('OR', $experiences) ? 'checked' : '' }}
-                            name="experiences[]" value="OR">
-                          <label for="checkbox1"> OR </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox2" type="checkbox" {{in_array('ICU', $experiences) ? 'checked' : '' }}
-                            name="experiences[]" value="ICU">
-                          <label for="checkbox2"> ICU </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox3" type="checkbox" {{in_array('Pediatric', $experiences) ? 'checked' : ''
-                            }} name="experiences[]" value="Pediatric">
-                          <label for="checkbox3"> Pediatric </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox4" type="checkbox" {{in_array('Home Health', $experiences) ? 'checked' : ''
-                            }} name="experiences[]" value="Home Health">
-                          <label for="checkbox4"> Home Health </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox5" type="checkbox" {{in_array('Endoscopy', $experiences) ? 'checked' : ''
-                            }} name="experiences[]" value="Endoscopy">
-                          <label for="checkbox5"> Endoscopy </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox6" type="checkbox" {{in_array('Lab', $experiences) ? 'checked' : '' }}
-                            name="experiences[]" value="Lab">
-                          <label for="checkbox6"> Lab </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox7" type="checkbox" {{in_array('IR', $experiences) ? 'checked' : '' }}
-                            name="experiences[]" value="IR">
-                          <label for="checkbox7"> IR </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox8" type="checkbox" {{in_array('MS', $experiences) ? 'checked' : '' }}
-                            name="experiences[]" value="MS">
-                          <label for="checkbox8"> MS </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox9" type="checkbox" {{in_array('Telehealth', $experiences) ? 'checked' : ''
-                            }} name="experiences[]" value="Telehealth">
-                          <label for="checkbox9"> Telehealth </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox10" type="checkbox" {{in_array('PACU', $experiences) ? 'checked' : '' }}
-                            name="experiences[]" value="PACU">
-                          <label for="checkbox10"> PACU </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox11" type="checkbox" {{in_array('Labor & Delivery', $experiences)
-                            ? 'checked' : '' }} name="experiences[]" value="Labor & Delivery">
-                          <label for="checkbox11"> Labor & Delivery </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox12" type="checkbox" {{in_array('Long Term Care', $experiences) ? 'checked'
-                            : '' }} name="experiences[]" value="Long Term Care">
-                          <label for="checkbox12"> Long Term Care </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox13" type="checkbox" {{in_array('Psych School', $experiences) ? 'checked'
-                            : '' }} name="experiences[]" value="Psych School">
-                          <label for="checkbox13"> Psych School </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox14" type="checkbox" {{in_array('Oncology', $experiences) ? 'checked' : ''
-                            }} name="experiences[]" value="Oncology">
-                          <label for="checkbox14"> Oncology </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox15" type="checkbox" {{in_array('Geriatric', $experiences) ? 'checked' : ''
-                            }} name="experiences[]" value="Geriatric">
-                          <label for="checkbox15"> Geriatric </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox16" type="checkbox" {{in_array('Critical Care', $experiences) ? 'checked'
-                            : '' }} name="experiences[]" value="Critical Care">
-                          <label for="checkbox16"> Critical Care </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox17" type="checkbox" {{in_array('Nurse Manager', $experiences) ? 'checked'
-                            : '' }} name="experiences[]" value="Nurse Manager">
-                          <label for="checkbox17"> Nurse Manager </label>
-                        </div>
-                      </div>
-
+                      @endforeach
                     </div>
                   </div>
                   <div class="form-group">
@@ -546,6 +286,12 @@
                     <div class="col-md-12">
                       <textarea class="form-control form-control-line" rows="5"
                         name="about">{{$user->worker->about ?? ''}}</textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-12" for="license">Upload any professional license. (Optional)</label>
+                    <div class="col-md-12">
+                      <input type="file" name="license" id="license">
                     </div>
                   </div>
 

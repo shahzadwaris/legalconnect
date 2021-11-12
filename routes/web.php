@@ -64,75 +64,74 @@ Route::post('/notifications/settings-update', 'NotificationsController@update')-
 Route::get('/notifications/mark-read', 'NotificationsController@markRead')->name('notification.markRead');
 
 Route::middleware(['auth', 'nurse'])->group(function () {
-    Route::get('/nurse/profile', 'Nurse\NurseController@profile')->name('nurse.profile');
-    Route::post('/nurse/update-personal-details', 'Nurse\NurseController@updatePersonalDetails')->name('nurse.personalDetails');
-    Route::post('/nurse/update-medical-provider-details', 'Nurse\NurseController@updateMedicalProviderDetails')->name('nurse.updateMedicalProviderDetails');
+    Route::get('/worker/profile', 'Nurse\NurseController@profile')->name('nurse.profile');
+    Route::post('/worker/update-personal-details', 'Nurse\NurseController@updatePersonalDetails')->name('nurse.personalDetails');
+    Route::post('/worker/update-medical-provider-details', 'Nurse\NurseController@updateMedicalProviderDetails')->name('nurse.updateMedicalProviderDetails');
 });
 Route::middleware(['auth', 'nurse', 'profile'])->group(function () {
-    Route::get('/nurse', 'Nurse\NurseController@index')->name('nurse.index');
-    Route::get('/nurse/delete-profile', 'Nurse\NurseController@deleteProfile')->name('nurse.deleteProfile');
-    // Route::get('/nurse/provider/{username}', 'Nurse\NurseController@providerProfile')->name('nurse.providerProfile');
-    Route::post('/nurse/add-bank', 'Nurse\NurseController@addBank')->name('nurse.addBank');
-    Route::get('/nurse/destroy-profile', 'Nurse\NurseController@destroy')->name('nurse.destroy');
+    Route::get('/worker', 'Nurse\NurseController@index')->name('nurse.index');
+    Route::get('/worker/delete-profile', 'Nurse\NurseController@deleteProfile')->name('nurse.deleteProfile');
+    Route::post('/worker/add-bank', 'Nurse\NurseController@addBank')->name('nurse.addBank');
+    Route::get('/worker/destroy-profile', 'Nurse\NurseController@destroy')->name('nurse.destroy');
 
-    Route::get('/nurse/inbox', 'Nurse\ChatController@index')->name('chat.index');
-    Route::get('/nurse/inbox/messages/{id}', 'Nurse\ChatController@show')->name('chat.show');
+    Route::get('/worker/inbox', 'Nurse\ChatController@index')->name('chat.index');
+    Route::get('/worker/inbox/messages/{id}', 'Nurse\ChatController@show')->name('chat.show');
 
-    Route::get('/nurse/earning', 'Nurse\EarningController@index')->name('earning.index');
-    Route::get('/nurse/jobs', 'Nurse\JobController@index')->name('job.index');
-    Route::get('/nurse/jobs/search', 'Nurse\JobController@search')->name('job.search');
-    Route::get('/nurse/jobs/applied', 'Nurse\ApplyController@index')->name('apply.index');
-    Route::get('/nurse/jobs/applied/store/{jobID}/{providerID}', 'Nurse\ApplyController@store')->name('apply.store');
-    Route::get('/nurse/jobs/applied/destroy/{id}', 'Nurse\ApplyController@destroy')->name('apply.destroy');
-    Route::get('/nurse/jobs/connection', 'Nurse\ApplyController@connection')->name('apply.connection');
-    Route::get('/nurse/jobs/hired', 'Nurse\HiredController@index')->name('hired.index');
-    Route::get('/nurse/jobs/declined', 'Nurse\HiredController@declined')->name('hired.declined');
+    Route::get('/worker/earning', 'Nurse\EarningController@index')->name('earning.index');
+    Route::get('/worker/jobs', 'Nurse\JobController@index')->name('job.index');
+    Route::get('/worker/jobs/search', 'Nurse\JobController@search')->name('job.search');
+    Route::get('/worker/jobs/applied', 'Nurse\ApplyController@index')->name('apply.index');
+    Route::get('/worker/jobs/applied/store/{jobID}/{providerID}', 'Nurse\ApplyController@store')->name('apply.store');
+    Route::get('/worker/jobs/applied/destroy/{id}', 'Nurse\ApplyController@destroy')->name('apply.destroy');
+    Route::get('/worker/jobs/connection', 'Nurse\ApplyController@connection')->name('apply.connection');
+    Route::get('/worker/jobs/hired', 'Nurse\HiredController@index')->name('hired.index');
+    Route::get('/worker/jobs/declined', 'Nurse\HiredController@declined')->name('hired.declined');
 });
 
 Route::middleware(['auth', 'provider'])->group(function () {
-    Route::get('/provider/profile', 'Provider\ProviderController@profile')->name('provider.profile');
-    Route::post('/provider/profile-update', 'Provider\ProviderController@updateBusinessDetails')->name('provider.updateBusinessDetails');
-    Route::post('/provider/profile-update-business', 'Provider\ProviderController@updateBusiness')->name('provider.updateBusiness');
-    Route::get('/provider/terms-and-conditions', 'HomeController@termsMP')->name('home.provider.terms');
+    Route::get('/firm/profile', 'Provider\ProviderController@profile')->name('provider.profile');
+    Route::post('/firm/profile-update', 'Provider\ProviderController@updateBusinessDetails')->name('provider.updateBusinessDetails');
+    Route::post('/firm/profile-update-business', 'Provider\ProviderController@updateBusiness')->name('provider.updateBusiness');
+    Route::get('/firm/terms-and-conditions', 'HomeController@termsMP')->name('home.provider.terms');
 });
 
 Route::middleware(['auth', 'provider', 'profile'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('/provider', 'Provider\ProviderController@index')->name('provider.index');
+    Route::get('/firm', 'Provider\ProviderController@index')->name('provider.index');
 
-    Route::get('/provider/delete-profile', 'Provider\ProviderController@deleteProfile')->name('provider.deleteProfile');
+    Route::get('/firm/delete-profile', 'Provider\ProviderController@deleteProfile')->name('provider.deleteProfile');
     // Route::get('/provider/nurse/{username}', 'Provider\ProviderController@nurseProfile')->name('provider.nurseProfile');
 
-    Route::get('/provider/destroy-profile', 'Provider\ProviderController@destroy')->name('provider.destroy');
+    Route::get('/firm/destroy-profile', 'Provider\ProviderController@destroy')->name('provider.destroy');
 
-    Route::get('/provider/create-token', 'Provider\BankController@createToken')->name('bank.createToken');
-    Route::post('/provider/verify-token', 'Provider\BankController@verifyToken')->name('bank.verifyToken');
+    Route::get('/firm/create-token', 'Provider\BankController@createToken')->name('bank.createToken');
+    Route::post('/firm/verify-token', 'Provider\BankController@verifyToken')->name('bank.verifyToken');
 
-    Route::post('/provider/add-bank', 'Provider\BankController@addBank')->name('bank.addBank');
+    Route::post('/firm/add-bank', 'Provider\BankController@addBank')->name('bank.addBank');
 
 
-    Route::get('/provider/jobs', 'Provider\JobController@index')->name('provider.job.index');
-    Route::get('/provider/jobs/create', 'Provider\JobController@create')->name('provider.job.create');
-    Route::post('/provider/jobs/store', 'Provider\JobController@store')->name('provider.job.store');
-    Route::get('/provider/jobs/edit/{id}', 'Provider\JobController@edit')->name('provider.job.edit');
-    Route::post('/provider/jobs/update/{id}', 'Provider\JobController@update')->name('provider.job.update');
-    Route::get('/provider/jobs/destroy/{id}', 'Provider\JobController@destroy')->name('provider.job.destroy');
-    Route::get('/provider/inbox', 'Provider\ChatController@index')->name('provider.chat.index');
-    Route::get('/provider/payments', 'Provider\PaymentController@index')->name('provider.payment.index');
-    Route::get('/provider/payments/create', 'Provider\PaymentController@create')->name('provider.payment.create');
-    Route::post('/provider/payments/store', 'Provider\PaymentController@store')->name('provider.payment.store');
-    Route::get('/provider/nurses/connection-requests', 'Provider\NursesController@connectionsRequest')->name('provider.nurses.requests');
-    Route::get('/provider/nurses/connection-accept/{id}', 'Provider\NursesController@connectionsAccept')->name('provider.nurses.requests.accept');
-    Route::get('/provider/nurses/connections-reject/{id}', 'Provider\NursesController@connectionsReject')->name('provider.nurses.requests.reject');
-    Route::get('/provider/nurses/connections', 'Provider\NursesController@connections')->name('provider.nurses.connections');
-    Route::get('/provider/nurses/hired', 'Provider\NursesController@hired')->name('provider.nurses.hired');
-    Route::get('/provider/nurses/mark-hired/{id}', 'Provider\NursesController@markHired')->name('provider.nurses.markHired');
-    Route::get('/provider/nurses/mark-completed/{id}', 'Provider\NursesController@markCompleted')->name('provider.nurses.markCompleted');
-    Route::get('/provider/nurses/declined', 'Provider\NursesController@declined')->name('provider.nurses.declined');
+    Route::get('/firm/jobs', 'Provider\JobController@index')->name('provider.job.index');
+    Route::get('/firm/jobs/create', 'Provider\JobController@create')->name('provider.job.create');
+    Route::post('/firm/jobs/store', 'Provider\JobController@store')->name('provider.job.store');
+    Route::get('/firm/jobs/edit/{id}', 'Provider\JobController@edit')->name('provider.job.edit');
+    Route::post('/firm/jobs/update/{id}', 'Provider\JobController@update')->name('provider.job.update');
+    Route::get('/firm/jobs/destroy/{id}', 'Provider\JobController@destroy')->name('provider.job.destroy');
+    Route::get('/firm/inbox', 'Provider\ChatController@index')->name('provider.chat.index');
+    Route::get('/firm/payments', 'Provider\PaymentController@index')->name('provider.payment.index');
+    Route::get('/firm/payments/create', 'Provider\PaymentController@create')->name('provider.payment.create');
+    Route::post('/firm/payments/store', 'Provider\PaymentController@store')->name('provider.payment.store');
+    Route::get('/firm/worker/connection-requests', 'Provider\NursesController@connectionsRequest')->name('provider.nurses.requests');
+    Route::get('/firm/worker/connection-accept/{id}', 'Provider\NursesController@connectionsAccept')->name('provider.nurses.requests.accept');
+    Route::get('/firm/worker/connections-reject/{id}', 'Provider\NursesController@connectionsReject')->name('provider.nurses.requests.reject');
+    Route::get('/firm/worker/connections', 'Provider\NursesController@connections')->name('provider.nurses.connections');
+    Route::get('/firm/worker/hired', 'Provider\NursesController@hired')->name('provider.nurses.hired');
+    Route::get('/firm/worker/mark-hired/{id}', 'Provider\NursesController@markHired')->name('provider.nurses.markHired');
+    Route::get('/firm/worker/mark-completed/{id}', 'Provider\NursesController@markCompleted')->name('provider.nurses.markCompleted');
+    Route::get('/firm/worker/declined', 'Provider\NursesController@declined')->name('provider.nurses.declined');
 
-    Route::get('/provider/contact/messages/{id}', 'Provider\ChatController@show')->name('provider.chat.show');
-    Route::post('/provider/message/store', 'Provider\ChatController@store')->name('provder.message.store');
+    Route::get('/firm/contact/messages/{id}', 'Provider\ChatController@show')->name('provider.chat.show');
+    Route::post('/firm/message/store', 'Provider\ChatController@store')->name('provder.message.store');
 });
 Route::get('/admin/login', 'Admin\AdminController@login')->name('admin.login');
 Route::post('/admin/login/attempt', 'Admin\AdminController@loginAttempt')->name('admin.login.process');
