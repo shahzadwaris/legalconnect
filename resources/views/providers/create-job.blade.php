@@ -53,23 +53,23 @@
                   <div class="form-group">
                     <label for="example-email" class="col-md-12">Type of Job </label>
                     <div class="col-md-12">
-
-                      <div class="radio radio-info">
-                        <input type="radio" name="type" id="radio19" value="Per Diem">
-                        <label for="radio35"> Per Diem </label>
-                      </div>
-
                       <div class="radio radio-info">
                         <input type="radio" name="type" id="radio34" value="Full Time">
                         <label for="radio34"> Full Time </label>
                       </div>
 
                       <div class="radio radio-info">
-                        <input type="radio" name="type" id="radio33" value="Travel">
-                        <label for="radio33"> Travel </label>
+                        <input type="radio" name="type" id="radio33" value="Temporary">
+                        <label for="radio33"> Temporary </label>
                       </div>
                     </div>
                   </div>
+                  {{-- <div class="form-group mt-5" id="temporary" style="display: none;">
+                    <label class="col-md-12">How Long?</label>
+                    <div class="col-md-12">
+                      <input type="text" class="form-control form-control-line" name="temporary" value="" required>
+                    </div>
+                  </div> --}}
                   <div class="row">
                     <div class="col-md-3" style="margin-top: .3rem;">
                       <div class="form-group">
@@ -146,141 +146,25 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="example-email" class="col-md-12">Specialties Required (please check
-                      any that apply)
+                    <label for="example-email" class="col-md-12">Please Check the following experience you have?
                     </label>
                     @php
-                    $specialties=[];
+                    $experiences = [];
+                    // if($user->worker)
+                    // {
+                    // $experiences = explode(',', $user->worker->experiences);
+                    // }
+
                     @endphp
                     <div class="col-md-12">
-
+                      @foreach ($categories as $item)
                       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="checkbox checkbox-info">
-                          <input id="checkbox0" type="checkbox" {{in_array('ER', $specialties) ? 'checked' : '' }}
-                            name="specialties[]" value="ER">
-                          <label for="checkbox0"> ER </label>
+                          <input id="{{$item->title}}" type="checkbox" name="specialties[]" value="{{$item->title}}">
+                          <label for="{{$item->title}}"> {{$item->title}} </label>
                         </div>
                       </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox1" type="checkbox" {{in_array('OR', $specialties) ? 'checked' : '' }}
-                            name="specialties[]" value="OR">
-                          <label for="checkbox1"> OR </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox2" type="checkbox" {{in_array('ICU', $specialties) ? 'checked' : '' }}
-                            name="specialties[]" value="ICU">
-                          <label for="checkbox2"> ICU </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox3" type="checkbox" {{in_array('Pediatric', $specialties) ? 'checked' : ''
-                            }} name="specialties[]" value="Pediatric">
-                          <label for="checkbox3"> Pediatric </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox4" type="checkbox" {{in_array('Home Health', $specialties) ? 'checked' : ''
-                            }} name="specialties[]" value="Home Health">
-                          <label for="checkbox4"> Home Health </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox5" type="checkbox" {{in_array('Endoscopy', $specialties) ? 'checked' : ''
-                            }} name="specialties[]" value="Endoscopy">
-                          <label for="checkbox5"> Endoscopy </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox6" type="checkbox" {{in_array('Lab', $specialties) ? 'checked' : '' }}
-                            name="specialties[]" value="Lab">
-                          <label for="checkbox6"> Lab </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox7" type="checkbox" {{in_array('IR', $specialties) ? 'checked' : '' }}
-                            name="specialties[]" value="IR">
-                          <label for="checkbox7"> IR </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox8" type="checkbox" {{in_array('MS', $specialties) ? 'checked' : '' }}
-                            name="specialties[]" value="MS">
-                          <label for="checkbox8"> MS </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox9" type="checkbox" {{in_array('Telehealth', $specialties) ? 'checked' : ''
-                            }} name="specialties[]" value="Telehealth">
-                          <label for="checkbox9"> Telehealth </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox10" type="checkbox" {{in_array('PACU', $specialties) ? 'checked' : '' }}
-                            name="specialties[]" value="PACU">
-                          <label for="checkbox10"> PACU </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox11" type="checkbox" {{in_array('Labor & Delivery', $specialties)
-                            ? 'checked' : '' }} name="specialties[]" value="Labor & Delivery">
-                          <label for="checkbox11"> Labor & Delivery </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox12" type="checkbox" {{in_array('Long Term Care', $specialties) ? 'checked'
-                            : '' }} name="specialties[]" value="Long Term Care">
-                          <label for="checkbox12"> Long Term Care </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox13" type="checkbox" {{in_array('Psych School', $specialties) ? 'checked'
-                            : '' }} name="specialties[]" value="Psych School">
-                          <label for="checkbox13"> Psych School </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox14" type="checkbox" {{in_array('Oncology', $specialties) ? 'checked' : ''
-                            }} name="specialties[]" value="Oncology">
-                          <label for="checkbox14"> Oncology </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox15" type="checkbox" {{in_array('Geriatric', $specialties) ? 'checked' : ''
-                            }} name="specialties[]" value="Geriatric">
-                          <label for="checkbox15"> Geriatric </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox16" type="checkbox" {{in_array('Critical Care', $specialties) ? 'checked'
-                            : '' }} name="specialties[]" value="Critical Care">
-                          <label for="checkbox16"> Critical Care </label>
-                        </div>
-                      </div>
-                      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="checkbox checkbox-info">
-                          <input id="checkbox17" type="checkbox" {{in_array('Nurse Manager', $specialties) ? 'checked'
-                            : '' }} name="specialties[]" value="Nurse Manager">
-                          <label for="checkbox17"> Nurse Manager </label>
-                        </div>
-                      </div>
-
+                      @endforeach
                     </div>
                   </div>
 

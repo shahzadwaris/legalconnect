@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Medical Provider
+Law Firms
 @endsection
 @section('contents')
 <div class="container-fluid">
@@ -8,15 +8,15 @@ Medical Provider
     <!-- Page Heading -->
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Medical provider</h1>
-        <div class="row">
+        <h1 class="h3 mb-0 text-gray-800">Law Firm</h1>
+        {{-- <div class="row">
             <div class="col-12">
                 <a href="{{route('admin.providers.charge')}}"
                     class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                         class="fas fa-money-bill-alt fa-sm text-white-50 mr-1"></i>Charge
                     Provider</a>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="flash-message" id='success-alert'>
         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -30,7 +30,7 @@ Medical Provider
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">All Medical Providers</h6>
+            <h6 class="m-0 font-weight-bold text-primary">All Law Firms</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -45,6 +45,9 @@ Medical Provider
                             <th>Email</th>
                             <th>Username</th>
                             <th>Phone</th>
+                            <th>No. of Employees</th>
+                            <th>Experience</th>
+                            <th>Specialize</th>
                             <th>Date Joined</th>
                             <th>Actions</th>
                         </tr>
@@ -59,6 +62,9 @@ Medical Provider
                             <th>Email</th>
                             <th>Username</th>
                             <th>Phone</th>
+                            <th>No. of Employees</th>
+                            <th>Experience</th>
+                            <th>Specialize</th>
                             <th>Date Joined</th>
                             <th>Actions</th>
                         </tr>
@@ -68,16 +74,19 @@ Medical Provider
                         @foreach ($providers as $provider)
                         <tr>
                             <td>{{$provider->name}}</td>
-                            <td>{{$provider->provider->zip}}</td>
-                            <td>{{$provider->provider->experince}}</td>
-                            <td>{{$provider->provider->businessType}}</td>
-                            <td>{{$provider->provider->hiringPerson}}</td>
-                            <td>{{$provider->provider->hiringPersonEmail}}</td>
+                            <td>{{$provider->firm->zip}}</td>
+                            <td>{{$provider->firm->experince}}</td>
+                            <td>{{$provider->firm->businessType}}</td>
+                            <td>{{$provider->firm->hiringPerson}}</td>
+                            <td>{{$provider->firm->hiringPersonEmail}}</td>
                             <td><a target='_blank'
                                     href="{{route('nurse.providerProfile', $provider->username)}}">{{$provider->username}}</a>
                             </td>
-                            <td>{{$provider->provider->hiringPersonPhone}}</td>
-                            <td>{{$provider->provider->created_at->format('M d, Y')}}</td>
+                            <td>{{$provider->firm->hiringPersonPhone}}</td>
+                            <td>{{$provider->firm->employees}}</td>
+                            <td>{{$provider->firm->experience}}</td>
+                            <td>{{$provider->firm->specialize}}</td>
+                            <td>{{$provider->firm->created_at->format('M d, Y')}}</td>
                             <td>
                                 <a class="btn btn-sm btn-success " href="{{route('admin.provider.edit',
                                                                     $provider->id)}}"><i class="fa fa-edit"></i></a>

@@ -17,14 +17,14 @@ class NursesController extends Controller
 {
     public function index()
     {
-        $nurses = User::with('nurse', 'nurse.profession')->where('type', 1)->get();
+        $nurses = User::with('worker', 'worker.profession')->where('type', 1)->get();
         return view('admin.nurses', compact('nurses'));
     }
 
     public function edit($id)
     {
         $categories = Category::all();
-        $user       = User::with('nurse')->findOrFail($id);
+        $user       = User::with('worker')->findOrFail($id);
         return view('admin.nurse-edit-profile', compact('user', 'categories'));
     }
 

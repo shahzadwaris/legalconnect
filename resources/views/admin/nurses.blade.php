@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('title')
-Medical Worker
+Legal Workers
 @endsection
 @section('contents')
 <div class="container-fluid">
@@ -8,15 +8,7 @@ Medical Worker
     <!-- Page Heading -->
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Medical Worker</h1>
-        <div class="row">
-            <div class="col-12">
-                <a href="{{route('admin.nurses.makePayment')}}"
-                    class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                        class="fas fa-money-bill-alt fa-sm text-white-50 mr-1"></i>Make
-                    Payment</a>
-            </div>
-        </div>
+        <h1 class="h3 mb-0 text-gray-800">Legal Worker</h1>
     </div>
     <div class="flash-message" id='success-alert'>
         @foreach (['danger', 'warning', 'success', 'info'] as $msg)
@@ -30,7 +22,7 @@ Medical Worker
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">All Medical Workers</h6>
+            <h6 class="m-0 font-weight-bold text-primary">All Legal Workers</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -43,9 +35,11 @@ Medical Worker
                             <th>Years of experience</th>
                             <th>Email</th>
                             <th>Username</th>
-                            <th>SSN</th>
+                            <th>LLM</th>
+                            <th>Bars</th>
+                            <th>Specialties</th>
+                            <th>Experiences</th>
                             <th>Date Joined</th>
-                            <th>Skills</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -57,9 +51,11 @@ Medical Worker
                             <th>Years of experience</th>
                             <th>Email</th>
                             <th>Username</th>
-                            <th>SSN</th>
+                            <th>LLM</th>
+                            <th>Bars</th>
+                            <th>Specialties</th>
+                            <th>Experiences</th>
                             <th>Date Joined</th>
-                            <th>Skills</th>
                             <th>Actions</th>
                         </tr>
                     </tfoot>
@@ -67,16 +63,18 @@ Medical Worker
                         @foreach ($nurses as $nurse)
                         <tr>
                             <td>{{$nurse->name}}</td>
-                            <td>{{$nurse->nurse->profession ? $nurse->nurse->profession->title : ''}}</td>
-                            <td>{{$nurse->nurse->zip}}</td>
-                            <td>{{$nurse->nurse->experienceInYears}}</td>
+                            <td>{{$nurse->worker->profession ? $nurse->worker->profession->title : ''}}</td>
+                            <td>{{$nurse->worker->zip}}</td>
+                            <td>{{$nurse->worker->experienceInYears}}</td>
                             <td>{{$nurse->email}}</td>
                             <td><a target='_blank'
                                     href="{{route('provider.nurseProfile', $nurse->username)}}">{{$nurse->username}}</a>
                             </td>
-                            <td>{{$nurse->nurse->socialSecurityNumber}}</td>
+                            <td>{{$nurse->worker->llm}}</td>
+                            <td>{{$nurse->worker->bars}}</td>
+                            <td>{{$nurse->worker->specialties}}</td>
+                            <td>{{$nurse->worker->experiences}}</td>
                             <td>{{$nurse->created_at->format('M d, Y')}}</td>
-                            <td>{{$nurse->nurse->experiences}}</td>
                             <td>
                                 <a class="btn btn-sm btn-success" href="{{route('admin.nurse.edit',$nurse->id)}}"><i
                                         class="fa fa-edit "></i></a>

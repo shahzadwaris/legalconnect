@@ -44,7 +44,7 @@ class JobController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        Job::create([
+        $job = Job::create([
             'user_id'                    => Auth::id(),
             'jobTitle'                   => $request->title,
             'slug'                       => Str::slug($request->title),

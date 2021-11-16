@@ -23,7 +23,7 @@ Welcome
                     <div class="row">
                         <div class="col-xl-6 col-lg-9 col-md-10">
                             <div class="hero__caption">
-                                <h1>Find The Most Exciting Medical Jobs</h1>
+                                <h1>Find The Most Exciting Legal Jobs</h1>
                             </div>
                         </div>
                     </div>

@@ -8,19 +8,21 @@ use App\Models\User;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class ProvidersController extends Controller
 {
     public function index()
     {
-        $providers = User::with('provider')->where('type', 2)->get();
+        $providers = User::with('firm')->where('type', 2)->get();
         return view('admin.providers', compact('providers'));
     }
 
     public function edit($id)
     {
-        $user = User::with('provider')->findOrFail($id);
-        return view('admin.provider-edit-profile', compact('user'));
+        $categories = Category::all();
+        $user = User::with('firm')->findOrFail($id);
+        return view('admin.provider-edit-profile', compact('user', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -30,7 +32,7 @@ class ProvidersController extends Controller
         $user->update([
             'name' => $request->businessName,
         ]);
-        $user->provider()->update([
+        $user->firm()->update([
             'hiringPerson'          => $request->hiringPerson,
             'hiringPersonEmail'     => $request->hiringPersonEmail,
             'hiringPersonPhone'     => $request->hiringPersonPhone,
@@ -38,14 +40,11 @@ class ProvidersController extends Controller
             'paymentPersonEmail'    => $request->paymentPersonEmail,
             'paymentPersonPhone'    => $request->paymentPersonPhone,
             'businessType'          => $request->type,
-            'insurance'             => $request->insurance,
-            'zip'                   => $request->zip,
-            'experince'             => $request->experince,
+            'specialize'          => $request->specialize,
+            'employees'             => $request->employees,
+            'specialize'             => is_array($request->experiences) ? implode(',', $request->experiences) : '',
             'about'                 => $request->about,
-            'businessType'          => $request->type,
             'zip'                   => $request->zip,
-            'experince'             => $request->experince,
-            'about'                 => $request->about,
         ]);
         session()->flash('alert-success', 'Profile has been updated successfully!');
         return redirect()->route('admin.provider.edit', $id);
