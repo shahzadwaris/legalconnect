@@ -56,9 +56,9 @@
                                         <td><a
                                                 href="{{route('provider.nurseProfile', $request->nurse->username)}}">{{$request->nurse->name}}</a>
                                         </td>
-                                        <td>{{$request->nurse->nurse->zip}}</td>
-                                        <td>{{$request->nurse->nurse->experienceInYears}}</td>
-                                        <td>{{$request->nurse->nurse->experiences}}</td>
+                                        <td>{{$request->nurse->worker->zip}}</td>
+                                        <td>{{$request->nurse->worker->experienceInYears}}</td>
+                                        <td>{{$request->nurse->worker->experiences}}</td>
                                         <td><span class="label label-megna label-rounded">{{$request->status}}</span>
                                         </td>
                                     </tr>

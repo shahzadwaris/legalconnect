@@ -90,8 +90,8 @@
 
 </div>
 <!-- /.container-fluid -->
-<footer class="footer text-center"> 2021 &copy; Med Connect . <a href="mailto:contact@medconnectus.com">Contact Us</a>
-</footer>
+<footer class="footer text-center"> 2021 &copy; Legal Connect . <a href="mailto:contact@medconnectus.com">Contact
+        Us</a></footer>
 </div>
 <!-- /#page-wrapper -->
 </div>

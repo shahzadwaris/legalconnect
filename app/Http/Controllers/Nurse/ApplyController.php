@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Nurse;
 
 use App\Models\User;

@@ -85,13 +85,13 @@
             <li class="nav-item {{request()->routeIs('admin.providers.index') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('admin.providers.index')}}">
                     <i class="fas fa-fw fa-hospital"></i>
-                    <span>Medical Providers</span></a>
+                    <span>Law Firms</span></a>
             </li>
             <!-- Nav Item - Medical Workers -->
             <li class="nav-item {{request()->routeIs('admin.nurses.index') ? 'active' : ''}}">
                 <a class="nav-link" href="{{route('admin.nurses.index')}}">
                     <i class="fas fa-fw fa-user-md"></i>
-                    <span>Medical Workers</span></a>
+                    <span>Legal Workers</span></a>
             </li>
             <!-- Nav Item - Medical Workers -->
             <li class="nav-item {{request()->routeIs('admin.conversation.index') ? 'active' : ''}}">
@@ -239,7 +239,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Medconnect {{date('Y')}}</span>
+                        <span>Copyright &copy; LegalConnect {{date('Y')}}</span>
                     </div>
                 </div>
             </footer>

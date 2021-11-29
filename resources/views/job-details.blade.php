@@ -120,6 +120,7 @@
                                 class="btn">Apply Now</a> --}}
                         </div>
                     </div>
+                    @if(Auth::check() && Auth::user()->type == 3){
                     <div class="post-details4  mb-50">
                         <!-- Small Section Tittle -->
                         <div class="small-section-tittle">
@@ -133,6 +134,7 @@
                             <li>Email: <span>carrier.colorlib@gmail.com</span></li>
                         </ul> --}}
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

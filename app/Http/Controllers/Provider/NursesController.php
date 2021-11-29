@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Provider;
 
 use App\Models\Connection;
@@ -18,7 +17,7 @@ class NursesController extends Controller
     public function connectionsRequest()
     {
         $user     = auth()->user();
-        $requests = Connection::with('job', 'nurse', 'nurse.nurse')->where(['provider_id' => $user->id, 'status'=>'PENDING'])->get();
+        $requests = Connection::with('job', 'nurse', 'nurse.worker')->where(['provider_id' => $user->id, 'status'=>'PENDING'])->get();
         return view('providers.nurses.connectionRequest', compact('user', 'requests'));
     }
 
@@ -43,21 +42,21 @@ class NursesController extends Controller
     public function declined()
     {
         $user     = auth()->user();
-        $requests = Connection::with('job', 'nurse', 'nurse.nurse')->where(['provider_id' => $user->id, 'status'=>'DECLINED'])->get();
+        $requests = Connection::with('job', 'nurse', 'nurse.worker')->where(['provider_id' => $user->id, 'status'=>'DECLINED'])->get();
         return view('providers.nurses.declined', compact('user', 'requests'));
     }
 
     public function connections()
     {
         $user     = auth()->user();
-        $requests = Connection::with('job', 'nurse', 'nurse.nurse')->where(['provider_id' => $user->id, 'status'=>'ACCEPTED'])->get();
+        $requests = Connection::with('job', 'nurse', 'nurse.worker')->where(['provider_id' => $user->id, 'status'=>'ACCEPTED'])->get();
         return view('providers.nurses.connections', compact('user', 'requests'));
     }
 
     public function hired()
     {
         $user     = auth()->user();
-        $hireds   = Connection::with('job', 'nurse', 'nurse.nurse')->where(['provider_id' => $user->id, 'status'=>'HIRED'])->orWhere('status', 'JOB COMPLETED')->get();
+        $hireds   = Connection::with('job', 'nurse', 'nurse.worker')->where(['provider_id' => $user->id, 'status'=>'HIRED'])->orWhere('status', 'JOB COMPLETED')->get();
         return view('providers.nurses.hired', compact('user', 'hireds'));
     }
 
