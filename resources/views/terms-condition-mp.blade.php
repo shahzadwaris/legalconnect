@@ -1,6 +1,6 @@
 @extends('layouts.theme')
 @section('title')
-Terms & Conditions MP
+Terms & Conditions LF
 @endsection
 @section('contents')
 <main>
@@ -13,7 +13,7 @@ Terms & Conditions MP
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>Terms & Conditions for Medical Provider</h2>
+                            <h2>Terms & Conditions for Legal Firm</h2>
                         </div>
                     </div>
                 </div>

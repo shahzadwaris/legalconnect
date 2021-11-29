@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Nurse;
 
 use App\Models\User;
@@ -65,7 +64,7 @@ class NurseController extends Controller
                 'salary'              => $request->salary,
                 'experienceInYears'   => $request->years,
                 'experiences'         => is_array($request->experiences) ? implode(',', $request->experiences) : '',
-                'about'         => $request->about,
+                'about'               => $request->about,
             ]);
             session()->flash('alert-success', 'Your profile has been updated successfully!');
             return redirect()->route('nurse.profile');
@@ -78,7 +77,7 @@ class NurseController extends Controller
             'salary'              => $request->salary,
             'experienceInYears'   => $request->years,
             'experiences'         => is_array($request->experiences) ? implode(',', $request->experiences) : '',
-            'about'         => $request->about,
+            'about'               => $request->about,
         ]);
         session()->flash('alert-success', 'Your profile has been updated successfully!');
         return redirect()->route('nurse.profile');
@@ -87,7 +86,7 @@ class NurseController extends Controller
     public function providerProfile($username)
     {
         $user     = auth()->user();
-        $provider = User::with('provider')->where('username', $username)->first();
+        $provider = User::with('firm')->where('username', $username)->first();
         return view('nurses.provider-profile', compact('user', 'provider'));
     }
 

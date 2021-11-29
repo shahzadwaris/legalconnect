@@ -39,6 +39,7 @@ Law Firms
                         <tr>
                             <th>Name</th>
                             <th>Zip Code</th>
+                            <th>Paid</th>
                             <th>Years in business</th>
                             <th>Type of business</th>
                             <th>Hiring person</th>
@@ -56,6 +57,7 @@ Law Firms
                         <tr>
                             <th>Name</th>
                             <th>Zip Code</th>
+                            <th>Paid</th>
                             <th>Years in business</th>
                             <th>Type of business</th>
                             <th>Hiring person</th>
@@ -75,6 +77,9 @@ Law Firms
                         <tr>
                             <td>{{$provider->name}}</td>
                             <td>{{$provider->firm->zip}}</td>
+                            <td>{!! $provider->isPaid ? "<a class='btn-success btn-sm'>Paid</a>" : "<a
+                                    class='btn-danger btn-sm'>Pending</a>" !!}
+                            </td>
                             <td>{{$provider->firm->experince}}</td>
                             <td>{{$provider->firm->businessType}}</td>
                             <td>{{$provider->firm->hiringPerson}}</td>
@@ -90,9 +95,22 @@ Law Firms
                             <td>
                                 <a class="btn btn-sm btn-success " href="{{route('admin.provider.edit',
                                                                     $provider->id)}}"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-sm btn-warning ml-5"
+                                <a class="btn btn-sm btn-warning ml-2"
                                     href="{{route('admin.provider.suspend', $provider->id)}}">{{$provider->status
                                     == 'suspended' ? 'Activate' : 'SUSPEND'}}</a>
+                                @if (!is_null($provider->isPaid))
+                                <a class="btn btn-sm btn-danger"
+                                    href="{{route('admin.provider.unpaid', $provider->id)}}"
+                                    onclick="return confirm('Are you sure you want to mark this provider as unpaid?');"><i
+                                        class="fa fa-dollar-sign"></i>
+                                    Mark unPaid</a>
+
+                                @else
+                                <a class="btn btn-sm btn-danger" href="{{route('admin.provider.paid', $provider->id)}}"
+                                    onclick="return confirm('Are you sure you want to mark this provider as paid?');"><i
+                                        class="fa fa-dollar-sign"></i>
+                                    Mark Paid</a>
+                                @endif
                                 <a class="btn btn-sm btn-danger  ml-5"
                                     href="{{route('admin.provider.destroy', $provider->id)}}"
                                     onclick="return confirm('Are you sure you want to delete this item?');"><i

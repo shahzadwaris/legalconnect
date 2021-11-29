@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Notifications;
 
 use App\Models\User;
@@ -42,9 +41,7 @@ class NurseConnectionHired extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage())
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('You are hired from ' . $this->user->username);
     }
 
     /**

@@ -10,11 +10,11 @@
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                     <h4 class="page-title">Dashboard</h4>
                 </div>
-                {{-- <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                    <a href="{{route('provider.job.create')}}" target="_blank"
-                        class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Create
-                        Job Post</a>
-                </div> --}}
+                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                    <a href="{{route('sub.show')}}"
+                        class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Manage
+                        Membership</a>
+                </div>
             </div>
             <!-- /.row -->
             <!-- /.row -->
@@ -87,7 +87,7 @@
         </div>
         <!-- /.container-fluid -->
         <footer class="footer text-center"> {{date('Y')}} &copy; Legal Connect . <a
-                href="mailto:contact@medconnectus.com">Contact
+                href="mailto:contact@legalconnectus.com">Contact
                 Us</a></footer>
     </div>
     <!-- /#page-wrapper -->

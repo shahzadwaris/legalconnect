@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -59,6 +58,7 @@ class Kernel extends HttpKernel
         'provider'           => \App\Http\Middleware\ProviderMiddleware::class,
         'admin'              => \App\Http\Middleware\AdminMiddleware::class,
         'profile'            => \App\Http\Middleware\CheckProfileStatus::class,
+        'IsPaid'             => \App\Http\Middleware\IsPaid::class,
         'auth.basic'         => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers'      => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can'                => \Illuminate\Auth\Middleware\Authorize::class,

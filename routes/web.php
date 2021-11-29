@@ -5,17 +5,6 @@ use App\Models\Zip;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/fix', function () {
     $jobs = Job::all();
     foreach ($jobs as $job) {
@@ -49,7 +38,7 @@ Route::get('/as', function () {
     }
 })->name('/');
 Route::get('/frequnetly-asked-questions', 'HomeController@faq')->name('faq');
-Route::get('/nurse/terms-and-conditions', 'HomeController@termsNurse')->name('home.nurse.terms');
+Route::get('/worker/terms-and-conditions', 'HomeController@termsNurse')->name('home.nurse.terms');
 Auth::routes();
 Route::get('/change-password', 'Auth\ChangePasswordController@index')->name('changePassword.index');
 Route::post('/update-password', 'Auth\ChangePasswordController@update')->name('changePassword.update');
@@ -93,9 +82,13 @@ Route::middleware(['auth', 'provider'])->group(function () {
     Route::post('/firm/profile-update', 'Provider\ProviderController@updateBusinessDetails')->name('provider.updateBusinessDetails');
     Route::post('/firm/profile-update-business', 'Provider\ProviderController@updateBusiness')->name('provider.updateBusiness');
     Route::get('/firm/terms-and-conditions', 'HomeController@termsMP')->name('home.provider.terms');
+    Route::get('/pricing', 'SubscriptionController@index')->name('sub.index');
+    Route::get('/subscribe/plan/{id}', 'SubscriptionController@create')->name('sub.create');
+    Route::get('/subscribe/store', 'SubscriptionController@store')->name('sub.store');
+    Route::get('/subscribe/show', 'SubscriptionController@show')->name('sub.show');
 });
 
-Route::middleware(['auth', 'provider', 'profile'])->group(function () {
+Route::middleware(['auth', 'provider', 'profile', 'IsPaid'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
 
     Route::get('/firm', 'Provider\ProviderController@index')->name('provider.index');
@@ -109,7 +102,6 @@ Route::middleware(['auth', 'provider', 'profile'])->group(function () {
     Route::post('/firm/verify-token', 'Provider\BankController@verifyToken')->name('bank.verifyToken');
 
     Route::post('/firm/add-bank', 'Provider\BankController@addBank')->name('bank.addBank');
-
 
     Route::get('/firm/jobs', 'Provider\JobController@index')->name('provider.job.index');
     Route::get('/firm/jobs/create', 'Provider\JobController@create')->name('provider.job.create');
@@ -146,7 +138,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/update/{id}', 'Admin\AdminController@update')->name('admin.update');
     Route::post('/admin/update-password/{id}', 'Admin\AdminController@updatePassword')->name('admin.updatePassword');
 
-
     Route::get('/admin/providers', 'Admin\ProvidersController@index')->name('admin.providers.index');
     Route::get('/admin/providers/charge-provider', 'Admin\ProvidersController@charge')->name('admin.providers.charge');
     Route::post('/admin/providers/charge-process', 'Admin\ProvidersController@chargeProcess')->name('admin.providers.charge.process');
@@ -154,6 +145,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/providers/update-profile/{id}', 'Admin\ProvidersController@update')->name('admin.provider.update');
     Route::get('/admin/providers/suspend-account/{id}', 'Admin\ProvidersController@suspendAccount')->name('admin.provider.suspend');
     Route::get('/admin/providers/destroy/{id}', 'Admin\ProvidersController@destroy')->name('admin.provider.destroy');
+    Route::get('/admin/providers/mark-paid/{id}', 'Admin\ProvidersController@markPaid')->name('admin.provider.paid');
+    Route::get('/admin/providers/mark-unpaid/{id}', 'Admin\ProvidersController@markUnPaid')->name('admin.provider.unpaid');
 
     Route::get('/admin/nurses/destroy/{id}', 'Admin\NursesController@destroy')->name('admin.nurse.destroy');
     Route::get('/admin/nurses/edit-profile/{id}', 'Admin\NursesController@edit')->name('admin.nurse.edit');

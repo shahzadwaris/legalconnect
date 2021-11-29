@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Notifications;
 
 use App\Models\User;
@@ -45,7 +44,7 @@ class MDPaymentNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage())
-            ->subject('Medical Provider Payment Received')
+            ->subject('Legal Firm Payment Received')
             ->line('Your have received payment of ' . $this->payment->amount . ' from ' . $this->user->username);
     }
 

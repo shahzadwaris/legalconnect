@@ -8,8 +8,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    {{--
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico"> --}}
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -30,21 +28,6 @@
     <link rel="apple-touch-icon" sizes="16x16" href="{{asset('favicon/favicon-16x16')}}">
     <link rel="apple-touch-icon" sizes="32x32" href="{{asset('favicon/favicon-32x32.jpg')}}">
     <link rel="apple-touch-icon" sizes="96x96" href="{{asset('favicon/favicon-96x96.jpg')}}">
-    {{--
-    <link rel="apple-touch-icon" sizes="60x60" href="{{asset('favicon/apple-icon-60x60.png')}}"> --}}
-    {{--
-    <link rel="apple-touch-icon" sizes="72x72" href="{{asset('favicon/apple-icon-72x72.png')}}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('favicon/apple-icon-76x76.png')}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{asset('favicon/apple-icon-114x114.png')}}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{asset('favicon/apple-icon-120x120.png')}}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{asset('favicon/apple-icon-144x144.png')}}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{asset('favicon/apple-icon-152x152.png')}}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('favicon/apple-icon-180x180.png
-    ')}}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{asset('favicon/android-icon-192x192.png')}}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon/favicon-32x32.png')}}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{asset('favicon/favicon-96x96.png')}}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('favicon/favicon-16x16.png')}}"> --}}
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
@@ -132,6 +115,14 @@
                                     @endphp
                                     <a href="{{$route}}" class="btn head-btn1">Dashboard
                                     </a>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                                             document.getElementById('logout-form').submit();"
+                                        class="btn head-btn2">Logout
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                     @endif
 
                                 </div>
@@ -159,8 +150,8 @@
                                 <div class="footer-tittle">
                                     <h4>About Us</h4>
                                     <div class="footer-pera">
-                                        <p>Med Connect is a technology based medical staffing agency that connects
-                                            Medical Providers with Medical Workers.</p>
+                                        <p>Legal Connect is a technology based legal staffing agency that connects
+                                            Law Firms with Legal Workers.</p>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +170,8 @@
                                         </p>
                                     </li>
                                     <li><a href="tel:+1-855-940-JOBS">Phone : +1-855-940-JOBS</a></li>
-                                    <li><a href="mailto:contact@medconnectus.com">Email : contact@medconnectus.com</a>
+                                    <li><a href="mailto:contact@legalconnectus.com">Email :
+                                            contact@legalconnectus.com</a>
                                     </li>
                                 </ul>
                             </div>
@@ -190,7 +182,7 @@
                             <div class="footer-tittle">
                                 <h4>Important Links</h4>
                                 <ul>
-                                    <li><a href="{{route('home.nurse.terms')}}">Medical Worker Terms & Conditions</a>
+                                    <li><a href="{{route('home.nurse.terms')}}">Legal Worker Terms & Conditions</a>
                                     </li>
                                     {{-- <li><a href="{{route('home.provider.terms')}}">Medical Provider Terms &
                                             Conditions</a>
@@ -209,56 +201,11 @@
                                     <p>Coming Soon!</p>
                                 </div>
                                 <!-- Form -->
-                                {{-- <div class="footer-form">
-                                    <div id="mc_embed_signup">
-                                        <form target="_blank"
-                                            action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                            method="get" class="subscribe_form relative mail_part">
-                                            <input type="email" name="email" id="newsletter-form-email"
-                                                placeholder="Email Address" class="placeholder hide-on-focus"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = ' Email Address '">
-                                            <div class="form-icon">
-                                                <button type="submit" name="submit" id="newsletter-submit"
-                                                    class="email_icon newsletter-submit button-contactForm"><img
-                                                        src="assets/img/icon/form.png" alt=""></button>
-                                            </div>
-                                            <div class="mt-10 info"></div>
-                                        </form>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--  -->
-                {{-- <div class="row footer-wejed justify-content-between">
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <!-- logo -->
-                        <div class="footer-logo mb-20">
-                            <a href="index.html"><img src="{{asset('images/logo-text.png')}}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="footer-tittle-bottom">
-                            <span>5000+</span>
-                            <p>Talented Hunter</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <div class="footer-tittle-bottom">
-                            <span>451</span>
-                            <p>Talented Hunter</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
-                        <!-- Footer Bottom Tittle -->
-                        <div class="footer-tittle-bottom">
-                            <span>568</span>
-                            <p>Talented Hunter</p>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
         <!-- footer-bottom area -->

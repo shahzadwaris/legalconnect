@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Medical Provider's Profile</h4>
+                    <h4 class="page-title">Legal Firm's Profile</h4>
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <!-- <a href="withdraw.php"
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-md-6"><strong>Type of Business</strong>
                                     <p>
-                                        {{$provider->provider->businessType}}
+                                        {{$provider->firm->businessType}}
                                     </p>
                                 </div>
                             </div>
@@ -41,12 +41,12 @@
                             <div class="row text-center m-t-10">
                                 <div class="col-md-6 b-r"><strong>Location Zip Code</strong>
                                     <p>
-                                        {{$provider->provider->zip}}
+                                        {{$provider->firm->zip}}
                                     </p>
                                 </div>
                                 <div class="col-md-6"><strong>Years in Business</strong>
                                     <p>
-                                        {{$provider->provider->experince}}
+                                        {{$provider->firm->experince}}
                                     </p>
                                 </div>
                             </div>
@@ -56,7 +56,7 @@
                             <div class="row text-center m-t-10">
                                 <div class="col-md-12"><strong>About Us</strong>
                                     <p>
-                                        {{$provider->provider->about}}
+                                        {{$provider->firm->about}}
                                     </p>
                                 </div>
                             </div>
@@ -78,8 +78,8 @@
 
         </div>
         <!-- /.container-fluid -->
-        <footer class="footer text-center"> 2021 &copy; Legal Connect . <a
-                href="mailto:contact@medconnectus.com">Contact
+        <footer class="footer text-center"> {{date('Y')}} &copy; Legal Connect . <a
+                href="mailto:contact@legalconnectus.com">Contact
                 Us</a></footer>
     </div>
     <!-- /#page-wrapper -->

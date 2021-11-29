@@ -14,6 +14,9 @@
                     <a href="{{route('provider.payment.create')}}"
                         class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Create
                         Payment</a>
+                    <a href="{{route('sub.show')}}"
+                        class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Manage
+                        Membership</a>
                 </div>
             </div>
             <!-- /.row -->
@@ -66,13 +69,6 @@
             </div>
 
             <!--row -->
-
-
-
-
-
-
-
             <!-- /row -->
             <div class="row">
                 <div class="col-sm-12">
@@ -111,7 +107,7 @@
         </div>
         <!-- /.container-fluid -->
         <footer class="footer text-center"> {{date('Y')}} &copy; Legal Connect . <a
-                href="mailto:contact@medconnectus.com">Contact
+                href="mailto:contact@legalconnectus.com">Contact
                 Us</a></footer>
     </div>
     <!-- /#page-wrapper -->

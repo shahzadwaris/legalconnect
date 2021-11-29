@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row bg-title">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Nurse's Profile</h4>
+                    <h4 class="page-title">Legal Worker's Profile</h4>
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                     <a href="new-job.php" target="_blank"
@@ -38,27 +38,23 @@
                             <hr>
                             <!-- .row -->
                             <div class="row text-center m-t-10">
-                                <div class="col-md-6 b-r"><strong>Willing to travel?</strong>
+                                <div class="col-md-6 b-r"><strong>LLM?</strong>
                                     <p>
-                                        {{$nurse->nurse->travel}}
+                                        {{$nurse->worker->llm == 1 ? 'Yes' : 'No'}}
                                     </p>
                                 </div>
                                 <div class="col-md-6"><strong>Years of experience</strong>
                                     <p>
-                                        {{$nurse->nurse->travel}}
+                                        {{$nurse->worker->travel}}
                                     </p>
                                 </div>
                             </div>
                             <hr>
                             <!-- .row -->
                             <div class="row text-center m-t-10">
-                                <div class="col-md-6 b-r"><strong>Level 4 APRN?</strong>
-                                    <p>
-                                    </p>
-                                </div>
                                 <div class="col-md-6"><strong>Experience</strong>
                                     <p>
-                                        {{$nurse->nurse->experienceInYears}}
+                                        {{$nurse->worker->experienceInYears}}
                                     </p>
                                 </div>
                             </div>
@@ -69,12 +65,12 @@
                             <div class="row text-center m-t-10">
                                 <div class="col-md-6 b-r"><strong>Location Zip Code</strong>
                                     <p>
-                                        {{$nurse->nurse->zip}}
+                                        {{$nurse->worker->zip}}
                                     </p>
                                 </div>
                                 <div class="col-md-6"><strong>Other Skills</strong>
                                     <p>
-                                        {{$nurse->nurse->experiences}}
+                                        {{$nurse->worker->experiences}}
                                     </p>
                                 </div>
                             </div>
@@ -100,7 +96,7 @@
         </div>
         <!-- /.container-fluid -->
         <footer class="footer text-center"> {{date('Y')}} &copy; Legal Connect . <a
-                href="mailto:contact@medconnectus.com">Contact
+                href="mailto:contact@legalconnectus.com">Contact
                 Us</a></footer>
     </div>
     <!-- /#page-wrapper -->

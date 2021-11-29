@@ -1,6 +1,6 @@
 @extends('layouts.theme')
 @section('title')
-Terms & Conditions Medical Woker
+Terms & Conditions Legal Woker
 @endsection
 @section('contents')
 <main>
@@ -13,7 +13,7 @@ Terms & Conditions Medical Woker
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap text-center">
-                            <h2>Terms & Conditions for Medical Worker</h2>
+                            <h2>Terms & Conditions for Legal Worker</h2>
                         </div>
                     </div>
                 </div>

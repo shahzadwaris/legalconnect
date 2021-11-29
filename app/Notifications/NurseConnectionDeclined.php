@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Notifications;
 
 use App\Models\User;
@@ -42,9 +41,7 @@ class NurseConnectionDeclined extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage())
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('You connection has been declined from ' . $this->user->username);
     }
 
     /**

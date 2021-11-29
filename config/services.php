@@ -29,8 +29,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'stripe' => [
-        'publishable' => env('STRIPE_PUBLISHABLE_KEY'),
-        'secret'      => env('STRIPE_SECRET'),
+        'publishable'   => env('STRIPE_PUBLISHABLE_KEY'),
+        'secret'        => env('STRIPE_SECRET'),
+        'product1'      => env('STRIPE_PRODUCT_1'),
+        'product2'      => env('STRIPE_PRODUCT_2'),
     ],
     'plaid' => [
         'PLAID_CLIENT_ID'   => env('PLAID_CLIENT_ID'),

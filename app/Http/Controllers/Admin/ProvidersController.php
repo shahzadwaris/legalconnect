@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use Stripe\Charge;
@@ -21,8 +20,22 @@ class ProvidersController extends Controller
     public function edit($id)
     {
         $categories = Category::all();
-        $user = User::with('firm')->findOrFail($id);
+        $user       = User::with('firm')->findOrFail($id);
         return view('admin.provider-edit-profile', compact('user', 'categories'));
+    }
+
+    public function markPaid($id)
+    {
+        User::findOrFail($id)->update(['isPaid' => 1]);
+        session()->flash('alert-success', 'Provider is marked as Paid');
+        return redirect()->back();
+    }
+
+    public function markUnPaid($id)
+    {
+        User::findOrFail($id)->update(['isPaid' => null]);
+        session()->flash('alert-warning', 'Provider is marked as Unpaid');
+        return redirect()->back();
     }
 
     public function update(Request $request, $id)
@@ -33,18 +46,18 @@ class ProvidersController extends Controller
             'name' => $request->businessName,
         ]);
         $user->firm()->update([
-            'hiringPerson'          => $request->hiringPerson,
-            'hiringPersonEmail'     => $request->hiringPersonEmail,
-            'hiringPersonPhone'     => $request->hiringPersonPhone,
-            'paymentPersonName'     => $request->paymentPersonName,
-            'paymentPersonEmail'    => $request->paymentPersonEmail,
-            'paymentPersonPhone'    => $request->paymentPersonPhone,
-            'businessType'          => $request->type,
-            'specialize'          => $request->specialize,
-            'employees'             => $request->employees,
+            'hiringPerson'           => $request->hiringPerson,
+            'hiringPersonEmail'      => $request->hiringPersonEmail,
+            'hiringPersonPhone'      => $request->hiringPersonPhone,
+            'paymentPersonName'      => $request->paymentPersonName,
+            'paymentPersonEmail'     => $request->paymentPersonEmail,
+            'paymentPersonPhone'     => $request->paymentPersonPhone,
+            'businessType'           => $request->type,
+            'specialize'             => $request->specialize,
+            'employees'              => $request->employees,
             'specialize'             => is_array($request->experiences) ? implode(',', $request->experiences) : '',
-            'about'                 => $request->about,
-            'zip'                   => $request->zip,
+            'about'                  => $request->about,
+            'zip'                    => $request->zip,
         ]);
         session()->flash('alert-success', 'Profile has been updated successfully!');
         return redirect()->route('admin.provider.edit', $id);

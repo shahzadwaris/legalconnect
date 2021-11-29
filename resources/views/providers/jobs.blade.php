@@ -78,7 +78,7 @@
         </div>
         <!-- /.container-fluid -->
         <footer class="footer text-center"> {{date('Y')}} &copy; Legal Connect . <a
-                href="mailto:contact@medconnectus.com">Contact
+                href="mailto:contact@legalconnectus.com">Contact
                 Us</a></footer>
     </div>
     <!-- /#page-wrapper -->
